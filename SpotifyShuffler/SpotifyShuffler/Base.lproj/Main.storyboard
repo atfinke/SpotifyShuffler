@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SpotifyShuffler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOW PLAYING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5Q-92-9Hr">
+                                <rect key="frame" x="16" y="40" width="343" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Wy1-WP-U4R"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                <color key="textColor" red="0.7176784873008728" green="0.71768069267272949" blue="0.71768563985824585" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Happy Hits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZMA-eI-TU6">
+                                <rect key="frame" x="16" y="92" width="343" height="42"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="35"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3z-21-A4t">
+                                <rect key="frame" x="87" y="243.5" width="200" height="200"/>
+                                <color key="backgroundColor" red="0.39625480771064758" green="0.83112943172454834" blue="0.4313751757144928" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="WDZ-h7-sr0"/>
+                                    <constraint firstAttribute="width" secondItem="P3z-21-A4t" secondAttribute="height" multiplier="1:1" id="Ymv-ho-e5m"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
+                                <state key="normal" title="Log In">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sdz-hP-BWr"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keep Playing Current Song" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xso-GI-O6o">
+                                <rect key="frame" x="16" y="570" width="286" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Automatically Open Spotify" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHQ-KB-Uha">
+                                <rect key="frame" x="16" y="605" width="286" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="O4u-KJ-DHx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MZI-JU-qjF">
+                                <rect key="frame" x="310" y="611" width="51" height="31"/>
+                                <connections>
+                                    <action selector="openSwitchFlipped:" destination="BYZ-38-t0r" eventType="valueChanged" id="Rp3-VE-Wei"/>
+                                </connections>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J0Y-0s-lsf">
+                                <rect key="frame" x="310" y="565" width="51" height="31"/>
+                                <connections>
+                                    <action selector="keepPlayingSwitchFlipped:" destination="BYZ-38-t0r" eventType="valueChanged" id="hqj-OL-4uV"/>
+                                </connections>
+                            </switch>
+                        </subviews>
+                        <color key="backgroundColor" red="0.070714607834815979" green="0.070714950561523438" blue="0.070715770125389099" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="MZI-JU-qjF" firstAttribute="leading" secondItem="JHQ-KB-Uha" secondAttribute="trailing" constant="8" id="3ct-ml-890"/>
+                            <constraint firstItem="Xso-GI-O6o" firstAttribute="trailing" secondItem="JHQ-KB-Uha" secondAttribute="trailing" id="GBb-f1-dXg"/>
+                            <constraint firstItem="P3z-21-A4t" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ZMA-eI-TU6" secondAttribute="bottom" priority="100" constant="10" id="HQh-jA-Lxc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="J0Y-0s-lsf" secondAttribute="trailing" constant="16" id="NLV-ec-k4h"/>
+                            <constraint firstItem="JHQ-KB-Uha" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Rj3-Al-gLU"/>
+                            <constraint firstItem="P3z-21-A4t" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="UHy-qW-g7b"/>
+                            <constraint firstItem="P3z-21-A4t" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="aIS-8x-KPe"/>
+                            <constraint firstItem="ZMA-eI-TU6" firstAttribute="top" secondItem="k5Q-92-9Hr" secondAttribute="bottom" constant="8" id="b0Z-A1-ecf"/>
+                            <constraint firstItem="JHQ-KB-Uha" firstAttribute="top" secondItem="Xso-GI-O6o" secondAttribute="bottom" constant="13" id="b31-r3-xDi"/>
+                            <constraint firstItem="MZI-JU-qjF" firstAttribute="top" secondItem="J0Y-0s-lsf" secondAttribute="bottom" constant="15" id="dnh-xx-C3p"/>
+                            <constraint firstItem="k5Q-92-9Hr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="feU-Gx-byH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MZI-JU-qjF" secondAttribute="bottom" constant="25" id="ffu-bJ-dUs"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JHQ-KB-Uha" secondAttribute="bottom" constant="20" id="gC8-Aw-tPW"/>
+                            <constraint firstItem="ZMA-eI-TU6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="hik-9s-gn5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="k5Q-92-9Hr" secondAttribute="trailing" constant="16" id="htK-Ol-KKP"/>
+                            <constraint firstItem="Xso-GI-O6o" firstAttribute="leading" secondItem="JHQ-KB-Uha" secondAttribute="leading" id="mwk-3n-HNZ"/>
+                            <constraint firstItem="k5Q-92-9Hr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="oCD-Y2-0zb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MZI-JU-qjF" secondAttribute="trailing" constant="16" id="pqh-i0-Giv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZMA-eI-TU6" secondAttribute="trailing" constant="16" id="uve-4a-xIp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="button" destination="P3z-21-A4t" id="Yfg-xv-evg"/>
+                        <outlet property="keepPlayingSwitch" destination="J0Y-0s-lsf" id="NcQ-Ow-d37"/>
+                        <outlet property="keepPlayingTitleLabel" destination="Xso-GI-O6o" id="Fqe-C0-bxJ"/>
+                        <outlet property="nowPlayingLabel" destination="ZMA-eI-TU6" id="XOb-da-lxU"/>
+                        <outlet property="nowPlayingTitleLabel" destination="k5Q-92-9Hr" id="P0Z-93-RE3"/>
+                        <outlet property="openSpotifyTitleLabel" destination="JHQ-KB-Uha" id="yyM-Wc-A1u"/>
+                        <outlet property="openSwitch" destination="MZI-JU-qjF" id="Ce0-rO-Wg5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+        </scene>
+    </scenes>
+</document>
