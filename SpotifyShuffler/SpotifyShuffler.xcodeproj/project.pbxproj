@@ -14,7 +14,34 @@
 		1499074A1FD8743E00A61BE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 149907481FD8743E00A61BE1 /* LaunchScreen.storyboard */; };
 		149907521FD87B6600A61BE1 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149907511FD87B6600A61BE1 /* Defaults.swift */; };
 		149907541FD890C400A61BE1 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149907531FD890C400A61BE1 /* Secrets.swift */; };
+		149907701FD893D700A61BE1 /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1499076F1FD893D700A61BE1 /* SpotifyAuthentication.framework */; };
+		149907721FD8941600A61BE1 /* SpotifyAuthentication.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1499076F1FD893D700A61BE1 /* SpotifyAuthentication.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		149907741FD8947800A61BE1 /* SpotifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149907731FD8947800A61BE1 /* SpotifyManager.swift */; };
+		14E5C8BC1FD8CF38002A2DCC /* TrackResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5C8BB1FD8CF38002A2DCC /* TrackResponse.swift */; };
+		14E5C8BE1FD8CF43002A2DCC /* ObjectTypeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5C8BD1FD8CF43002A2DCC /* ObjectTypeResponse.swift */; };
+		14E5C8C01FD8CF4C002A2DCC /* PlaylistItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5C8BF1FD8CF4C002A2DCC /* PlaylistItemResponse.swift */; };
+		14E5C8C21FD8CF5B002A2DCC /* PlaylistTracksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5C8C11FD8CF5B002A2DCC /* PlaylistTracksResponse.swift */; };
+		14E5C8C41FD8CF69002A2DCC /* ContextResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5C8C31FD8CF69002A2DCC /* ContextResponse.swift */; };
+		14E5C8C61FD8CF7D002A2DCC /* PlaybackResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5C8C51FD8CF7D002A2DCC /* PlaybackResponse.swift */; };
+		14E5C8C81FD8D09F002A2DCC /* DeviceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5C8C71FD8D09F002A2DCC /* DeviceResponse.swift */; };
+		14E5C8CA1FD8DBC5002A2DCC /* PlaylistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5C8C91FD8DBC5002A2DCC /* PlaylistResponse.swift */; };
+		14E5C8CE1FD8E5E4002A2DCC /* WKROperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5C8CD1FD8E5E4002A2DCC /* WKROperation.swift */; };
+		14E5C8D01FD8E905002A2DCC /* ProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5C8CF1FD8E905002A2DCC /* ProfileResponse.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		149907681FD8925900A61BE1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				149907721FD8941600A61BE1 /* SpotifyAuthentication.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1499073C1FD8743E00A61BE1 /* SpotifyShuffler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotifyShuffler.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -26,6 +53,19 @@
 		1499074B1FD8743E00A61BE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		149907511FD87B6600A61BE1 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		149907531FD890C400A61BE1 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		1499076F1FD893D700A61BE1 /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyAuthentication.framework; path = Spotify/SpotifyAuthentication.framework; sourceTree = "<group>"; };
+		149907731FD8947800A61BE1 /* SpotifyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyManager.swift; sourceTree = "<group>"; };
+		149907751FD894A200A61BE1 /* SpotifyShuffler-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpotifyShuffler-Bridging-Header.h"; sourceTree = "<group>"; };
+		14E5C8BB1FD8CF38002A2DCC /* TrackResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackResponse.swift; sourceTree = "<group>"; };
+		14E5C8BD1FD8CF43002A2DCC /* ObjectTypeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTypeResponse.swift; sourceTree = "<group>"; };
+		14E5C8BF1FD8CF4C002A2DCC /* PlaylistItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistItemResponse.swift; sourceTree = "<group>"; };
+		14E5C8C11FD8CF5B002A2DCC /* PlaylistTracksResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTracksResponse.swift; sourceTree = "<group>"; };
+		14E5C8C31FD8CF69002A2DCC /* ContextResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextResponse.swift; sourceTree = "<group>"; };
+		14E5C8C51FD8CF7D002A2DCC /* PlaybackResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackResponse.swift; sourceTree = "<group>"; };
+		14E5C8C71FD8D09F002A2DCC /* DeviceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceResponse.swift; sourceTree = "<group>"; };
+		14E5C8C91FD8DBC5002A2DCC /* PlaylistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistResponse.swift; sourceTree = "<group>"; };
+		14E5C8CD1FD8E5E4002A2DCC /* WKROperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKROperation.swift; sourceTree = "<group>"; };
+		14E5C8CF1FD8E905002A2DCC /* ProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				149907701FD893D700A61BE1 /* SpotifyAuthentication.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,10 +103,23 @@
 				149907411FD8743E00A61BE1 /* ViewController.swift */,
 				149907511FD87B6600A61BE1 /* Defaults.swift */,
 				149907531FD890C400A61BE1 /* Secrets.swift */,
+				149907731FD8947800A61BE1 /* SpotifyManager.swift */,
+				14E5C8CF1FD8E905002A2DCC /* ProfileResponse.swift */,
+				14E5C8C71FD8D09F002A2DCC /* DeviceResponse.swift */,
+				14E5C8C51FD8CF7D002A2DCC /* PlaybackResponse.swift */,
+				14E5C8C11FD8CF5B002A2DCC /* PlaylistTracksResponse.swift */,
+				14E5C8C91FD8DBC5002A2DCC /* PlaylistResponse.swift */,
+				14E5C8C31FD8CF69002A2DCC /* ContextResponse.swift */,
+				14E5C8BF1FD8CF4C002A2DCC /* PlaylistItemResponse.swift */,
+				14E5C8BB1FD8CF38002A2DCC /* TrackResponse.swift */,
+				14E5C8BD1FD8CF43002A2DCC /* ObjectTypeResponse.swift */,
+				14E5C8CD1FD8E5E4002A2DCC /* WKROperation.swift */,
 				149907431FD8743E00A61BE1 /* Main.storyboard */,
 				149907461FD8743E00A61BE1 /* Assets.xcassets */,
 				149907481FD8743E00A61BE1 /* LaunchScreen.storyboard */,
 				1499074B1FD8743E00A61BE1 /* Info.plist */,
+				1499076F1FD893D700A61BE1 /* SpotifyAuthentication.framework */,
+				149907751FD894A200A61BE1 /* SpotifyShuffler-Bridging-Header.h */,
 			);
 			path = SpotifyShuffler;
 			sourceTree = "<group>";
@@ -80,6 +134,7 @@
 				149907381FD8743E00A61BE1 /* Sources */,
 				149907391FD8743E00A61BE1 /* Frameworks */,
 				1499073A1FD8743E00A61BE1 /* Resources */,
+				149907681FD8925900A61BE1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -97,11 +152,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0910;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Andrew Finke";
 				TargetAttributes = {
 					1499073B1FD8743E00A61BE1 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -143,9 +199,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				149907521FD87B6600A61BE1 /* Defaults.swift in Sources */,
+				14E5C8BC1FD8CF38002A2DCC /* TrackResponse.swift in Sources */,
+				14E5C8C81FD8D09F002A2DCC /* DeviceResponse.swift in Sources */,
 				149907541FD890C400A61BE1 /* Secrets.swift in Sources */,
+				149907741FD8947800A61BE1 /* SpotifyManager.swift in Sources */,
 				149907421FD8743E00A61BE1 /* ViewController.swift in Sources */,
+				14E5C8C01FD8CF4C002A2DCC /* PlaylistItemResponse.swift in Sources */,
+				14E5C8CA1FD8DBC5002A2DCC /* PlaylistResponse.swift in Sources */,
+				14E5C8D01FD8E905002A2DCC /* ProfileResponse.swift in Sources */,
+				14E5C8C61FD8CF7D002A2DCC /* PlaybackResponse.swift in Sources */,
+				14E5C8C21FD8CF5B002A2DCC /* PlaylistTracksResponse.swift in Sources */,
+				14E5C8CE1FD8E5E4002A2DCC /* WKROperation.swift in Sources */,
 				149907401FD8743E00A61BE1 /* AppDelegate.swift in Sources */,
+				14E5C8BE1FD8CF43002A2DCC /* ObjectTypeResponse.swift in Sources */,
+				14E5C8C41FD8CF69002A2DCC /* ContextResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,12 +349,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 72S993BNAV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/SpotifyShuffler",
+					"$(PROJECT_DIR)/SpotifyShuffler/Spotify",
+				);
 				INFOPLIST_FILE = SpotifyShuffler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewfinke.SpotifyShuffler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SpotifyShuffler/SpotifyShuffler-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -297,12 +372,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 72S993BNAV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/SpotifyShuffler",
+					"$(PROJECT_DIR)/SpotifyShuffler/Spotify",
+				);
 				INFOPLIST_FILE = SpotifyShuffler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewfinke.SpotifyShuffler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SpotifyShuffler/SpotifyShuffler-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

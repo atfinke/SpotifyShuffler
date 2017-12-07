@@ -13,7 +13,7 @@ class Defaults {
     // MARK: - Types
 
     enum Key: String {
-        case keepPlaying, alwaysOpen
+        case keepPlaying, alwaysOpen, session, userID
     }
     
     // MARK: - Helpers

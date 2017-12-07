@@ -1,0 +1,9 @@
+[submodule "ios-sdk"]
+	path = ios-sdk
+	url = https://github.com/spotify/ios-sdk.git
+[submodule "Frameworks/Spotify"]
+	path = Frameworks/Spotify
+	url = https://github.com/spotify/ios-sdk.git
+[submodule "SpotifyShuffler/SpotifyShuffler/Spotify"]
+	path = SpotifyShuffler/SpotifyShuffler/Spotify
+	url = https://github.com/spotify/ios-sdk.git
