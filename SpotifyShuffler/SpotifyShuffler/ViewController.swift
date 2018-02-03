@@ -32,6 +32,7 @@ class ViewController: UIViewController {
     // MARK: - Properties
 
     private var isAuthenticated = false
+    private let manager = SpotifyManager.shared
 
     // MARK: - View Life Cycle
 
@@ -65,10 +66,10 @@ class ViewController: UIViewController {
 
     @IBAction func buttonPressed(_ sender: Any) {
         UISelectionFeedbackGenerator().selectionChanged()
-        if SpotifyManager.shared.isAuthenticated {
-            SpotifyManager.shared.createShuffledPlaylist(overwrite: false)
+        if manager.isAuthenticated {
+            manager.createShuffledPlaylist(overwrite: false)
         } else {
-            SpotifyManager.shared.presentLogInViewController(from: self)
+            manager.presentLogInViewController(from: self)
         }
     }
 
