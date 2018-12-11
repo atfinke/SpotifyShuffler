@@ -10,6 +10,7 @@ import Foundation
 
 struct PlaylistResponse: Decodable {
     let id: String
+    let uri: String?
     let name: String
     let description: String?
 }

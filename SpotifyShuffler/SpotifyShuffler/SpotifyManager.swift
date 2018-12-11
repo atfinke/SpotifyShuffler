@@ -91,13 +91,14 @@ class SpotifyManager: NSObject, SFSafariViewControllerDelegate {
         }
     }
 
+
     func createShuffledPlaylist(overwrite: Bool) {
         var error: SpotifyManagerError?
         let operationQueue = OperationQueue()
 
         func cancel() {
             operationQueue.cancelAllOperations()
-            UINotificationFeedbackGenerator().notificationOccurred(.error)
+//          /  UINotificationFeedbackGenerator().notificationOccurred(.error)
         }
 
         // Step 1: Fetch the current playing playlist
@@ -142,9 +143,9 @@ class SpotifyManager: NSObject, SFSafariViewControllerDelegate {
         let fetchTracksOperation = WKROperation()
         fetchTracksOperation.addExecutionBlock {
             guard let playlistInfo = playbackPlaylistInfo else { fatalError() }
-            self.fetchPlaylistTracks(info: playlistInfo) { response, fetchError in
-                if let response = response {
-                    playlistTracksResponses.append(response)
+            self.fetchPlaylistTracks(info: playlistInfo) { responses, fetchError in
+                if !responses.isEmpty {
+                    playlistTracksResponses = responses
                 } else {
                     error = fetchError
                     cancel()
@@ -163,10 +164,10 @@ class SpotifyManager: NSObject, SFSafariViewControllerDelegate {
         createPlaylistOperation.addExecutionBlock {
             guard let playlistResponse = playlistResponse else { fatalError() }
 
-            var params: [String: Any] = ["name": playlistResponse.name + "-Shuffled", "public": false]
-            if let description = playlistResponse.description {
-                params[description] = description
-            }
+            let params: [String: Any] = [
+                "name": "[Shuffled] " + playlistResponse.name,
+                "public": false
+            ]
 
             self.createPlaylist(params: params) { response, fetchError  in
                 if let response = response {
@@ -178,39 +179,95 @@ class SpotifyManager: NSObject, SFSafariViewControllerDelegate {
                 createPlaylistOperation.state = .isFinished
             }
         }
-        createPlaylistOperation.addDependency(fetchPlaylistOperation)
+        createPlaylistOperation.addDependency(fetchTracksOperation)
         operationQueue.addOperation(createPlaylistOperation)
 
         // Step 4: Fill new playlist with sorted tracks
+ let completionOperation = WKROperation()
 
-        let addTracksOperation = WKROperation()
-        addTracksOperation.addExecutionBlock {
+        let addTracksKickoffOperation = BlockOperation {
             guard let createdPlaylistResponse = createdPlaylistResponse else { fatalError() }
 
             let uris = playlistTracksResponses.map({ $0.items })
                 .reduce([], +)
                 .map({ $0.track.uri })
 
-            guard let magic = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: uris) as? [String] else {
+            guard let shuffledURIs = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: uris) as? [String] else {
                 fatalError()
             }
 
-            self.addToPlaylist(id: createdPlaylistResponse.id, uris: magic, completion: { addError in
-                if let addError = addError {
-                    error = addError
-                    cancel()
-                } else {
-                    print("Success")
-                    DispatchQueue.main.async {
-                        UINotificationFeedbackGenerator().notificationOccurred(.success)
-                    }
+            let uriChunkSize = 75
+            let uriChunks: [[String]] = stride(from: 0, to: shuffledURIs.count, by: uriChunkSize).map {
+                let end = uris.endIndex
+                let chunkEnd = shuffledURIs.index($0, offsetBy: uriChunkSize, limitedBy: end) ?? end
+                return Array(uris[$0..<chunkEnd])
+            }
+
+            for chunk in uriChunks {
+
+                let addTracksOperation = WKROperation()
+                addTracksOperation.addExecutionBlock {
+                    self.addToPlaylist(id: createdPlaylistResponse.id, uris: chunk, completion: { addError in
+                        if let addError = addError {
+                            error = addError
+                            cancel()
+                        } else {
+                            DispatchQueue.main.async {
+                                //                        UINotificationFeedbackGenerator().notificationOccurred(.success)
+                            }
+                        }
+                        addTracksOperation.state = .isFinished
+                    })
                 }
-                addTracksOperation.state = .isFinished
-            })
+                completionOperation.addDependency(addTracksOperation)
+                operationQueue.addOperation(addTracksOperation)
+
+            }
+
         }
-        addTracksOperation.addDependency(fetchTracksOperation)
-        addTracksOperation.addDependency(createPlaylistOperation)
-        operationQueue.addOperation(addTracksOperation)
+        addTracksKickoffOperation.addDependency(fetchTracksOperation)
+        addTracksKickoffOperation.addDependency(createPlaylistOperation)
+
+
+
+        completionOperation.addExecutionBlock {
+            guard let accessToken = self.session?.accessToken, let uri = createdPlaylistResponse?.uri else {
+                    //completion(.authentication)
+                    return
+            }
+
+            let urlString = "https://api.spotify.com/v1/me/player/play"
+
+            guard let url = URL(string: urlString) else {
+                fatalError()
+            }
+
+            var request = URLRequest(url: url)
+            request.httpMethod = "PUT"
+
+            let data = try! JSONSerialization.data(withJSONObject: ["context_uri": uri], options: [])
+            request.httpBody = data
+            request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+
+            let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
+                if let error = error {
+                    print("SpotifyManager: " + #function + " error: \(error)")
+                    completion(.network)
+                } else {
+                    print("SpotifyManager: " + #function + " completed")
+              //      completion(nil)
+                    print((urlResponse as? HTTPURLResponse)?.statusCode)
+                }
+            }
+            task.resume()
+        }
+        completionOperation.addDependency(addTracksKickoffOperation)
+        operationQueue.addOperation(completionOperation)
+
+
+        operationQueue.addOperation(addTracksKickoffOperation)
     }
 
     // MARK: - Authentication
@@ -255,7 +312,8 @@ class SpotifyManager: NSObject, SFSafariViewControllerDelegate {
             SPTAuthPlaylistReadCollaborativeScope,
             SPTAuthPlaylistModifyPublicScope,
             SPTAuthPlaylistModifyPrivateScope,
-            "user-read-playback-state"
+            "user-read-playback-state",
+            "user-modify-playback-state"
         ]
 
         guard let appURL = auth.spotifyAppAuthenticationURL(),
@@ -300,6 +358,7 @@ class SpotifyManager: NSObject, SFSafariViewControllerDelegate {
                 print("SpotifyManager: " + #function + " error: \(error)")
                 completion(.network)
             } else {
+                print("SpotifyManager: " + #function + " completed")
                 completion(nil)
             }
         }
@@ -423,29 +482,46 @@ class SpotifyManager: NSObject, SFSafariViewControllerDelegate {
     }
 
     private func fetchPlaylistTracks(info: (userID: String, playlistID: String),
-                       completion: @escaping (_ playlistTracksResponse: PlaylistTracksResponse?, _ error: SpotifyManagerError?) -> ()) {
+                       completion: @escaping (_ responses: [PlaylistTracksResponse], _ error: SpotifyManagerError?) -> Void) {
         print("SpotifyManager: " + #function)
 
         let string = "https://api.spotify.com/v1/users/\(info.userID)/playlists/\(info.playlistID)/tracks"
         guard let url = URL(string: string),
              let accessToken = session?.accessToken else {
-                completion(nil, .authentication)
+                completion([], .authentication)
                 return
         }
 
+        fetchAdditionalTracks(url: url,
+                              accessToken: accessToken,
+                              completion: completion)
+    }
+
+    private func fetchAdditionalTracks(url: URL, accessToken: String, responses: [PlaylistTracksResponse] = [], completion: @escaping ((_ responses: [PlaylistTracksResponse], _ error: SpotifyManagerError?) -> Void)) {
         var request = URLRequest(url: url)
         request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
             if let error = error {
                 print("SpotifyManager: " + #function + " error: \(error)")
-                completion(nil, .network)
+                completion(responses, .network)
             } else if let data = data,
                 let response = try? self.decoder.decode(PlaylistTracksResponse.self, from: data) {
                 print("SpotifyManager: " + #function + " got response")
-                completion(response, nil)
+
+                var newResponses = responses
+                newResponses.append(response)
+
+                if let nextURL = response.next {
+                    self.fetchAdditionalTracks(url: nextURL,
+                                                                           accessToken: accessToken,
+                                                                           responses: newResponses,
+                                                                           completion: completion)
+                } else {
+                    completion(newResponses, nil)
+                }
             } else {
                 print("SpotifyManager: " + #function + " response error")
-                completion(nil, .response)
+                completion(responses, .response)
             }
         }
         task.resume()
